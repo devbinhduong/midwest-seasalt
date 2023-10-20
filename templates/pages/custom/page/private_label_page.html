@@ -1,0 +1,71 @@
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+<main class="cms_page cms_left_menus page"> 
+	<div class="main_cate">
+		<div class="container">
+			<div class="cms_left">
+    			<ul class="cms_cat_list">
+					<li>
+						<a href="/private-label/">Private label</a>
+					</li>
+					<li>
+						<a href="/getting-started/">Getting started</a>
+					</li>
+					<li>
+						<a href="/about-our-products/">About our products</a>
+					</li>
+					<li>
+						<a href="/packaging-and-labeling/">Packaging and labeling</a>
+					</li>
+					<li>
+						<a href="/additional-services/">Additional services</a> 
+						<ul class="mm_sub_cat_list">
+							<li>
+								<a href="/private-label-ready-program/">Private Label Ready Program</a>
+							</li>									
+						</ul>
+					</li>
+					<li>
+						<a href="/private-label-frequently-asked-questions/">Frequently asked questions</a>
+					</li>
+					<li>
+						<a href="/private-label-request-custom-quote/">Download price list</a>
+					</li>
+					
+				</ul>
+				<div class="cms_button">
+					<a class="button" href="/private-label-request-custom-quote/">Request custom quote</a>
+				</div>
+			</div>
+			<div class="cms_right">
+				<div class="page-content page-content--centered">
+					{{#replace '%%Syndicate%%' page.content}}
+						{{> components/page/rss_feed}}
+					{{else}}
+						{{{page.content}}}
+					{{/replace}}
+				</div>
+			</div>
+			{{#if page.feed}}
+				<ul>
+					{{#each page.feed}}
+						<li>
+							<h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
+							<p>{{content}}</p>
+						</li>
+					{{/each}}
+				</ul>
+			{{/if}}
+		</div>
+	</div>
+</main>
+
+{{/partial}}
+{{> layout/base}}
+<style>
+.body {margin-top:0;}
+.body > .container{	max-width:100%; padding:0;} 
+</style>
+    

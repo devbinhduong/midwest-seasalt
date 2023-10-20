@@ -1,0 +1,108 @@
+<div id="sticky_addtocart">
+    <div class="container">
+        <div class="item">
+            <div class="item">
+            </div> 
+            <div class="item">
+                <div class="product-wrapper">
+                    <div class="product-image" data-image-gallery-main>
+                        <img src="{{getImage product.main_image 'productview_thumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{product.title}}" title="{{product.title}}" data-main-image>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h3>
+                        <div class="productView-price">
+                            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                                {{> components/products/price price=product.price schema_org=schema}}
+                            {{else}}
+                                {{> components/common/login-for-pricing}}
+                            {{/or}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <form class="form form-popup" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add-2>
+                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="product_id" value="{{product.id}}"/>
+                {{#if product.can_purchase}}
+                {{#if theme_settings.show_product_quantity_box}}
+                    <div class="form-field form-field--increments">
+                        <label class="form-label form-label--alternate"
+                            for="qty[]">{{lang 'products.quantity'}}</label>
+                            <div class="form-increment" data-quantity-change>
+                                <button class="button button--icon" data-action="dec">
+                                    <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
+                                    <i class="icon" aria-hidden="true">
+                                        <svg>
+                                            <use xlink:href="#icon-chevron-down"/>
+                                        </svg>
+                                    </i>
+                                </button>
+                                <input class="form-input form-input--incrementTotal"
+                                    id="qty[]"
+                                    name="qty[]"
+                                    type="tel"
+                                    value="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}1{{/if}}"
+                                    data-quantity-min="{{product.min_purchase_quantity}}"
+                                    data-quantity-max="{{product.max_purchase_quantity}}"
+                                    min="1"
+                                    pattern="[0-9]*"
+                                    aria-live="polite">
+                                <button class="button button--icon" data-action="inc">
+                                    <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
+                                    <i class="icon" aria-hidden="true">
+                                        <svg>
+                                            <use xlink:href="#icon-chevron-down"/>
+                                        </svg>
+                                    </i>
+                                </button>
+                            </div>
+                    </div>
+                {{/if}}
+                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                        <div class="form-action">
+                            <input id="form-action-addToCart-2" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit" value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
+
+                            {{#if product.options}}
+                                <a href="javascript:void(0)" class="button button--primary choose_options_add">
+                                    <span>Choose Option</span>
+                                </a>
+                            {{/if}}
+                        </div>
+                         {{{snippet 'product_addtocart'}}}
+                    {{/or}}
+                {{/if}}
+                {{#if product.out_of_stock}}
+                    {{#if product.out_of_stock_message}}
+                        {{> components/common/alert-error product.out_of_stock_message}}
+                    {{else}}
+                        {{> components/common/alert-error (lang 'products.sold_out')}}
+                    {{/if}}
+                {{/if}}
+                {{#if product.options}}
+                    <div class="pop-up-option">
+                        <div class="container">
+                            <div class="data-product-name">
+                                <div class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</div>
+                                <div class="productView-price">
+                                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                                        {{> components/products/price price=product.price schema_org=schema}}
+                                    {{else}}
+                                        {{> components/common/login-for-pricing}}
+                                    {{/or}}
+                                </div>
+                            </div>
+                            <div class="data-product-option" data-product-option-change-2>
+                                {{#each product.options}}
+                                    {{{dynamicComponent 'components/halothemes/options_stk_atc'}}}
+                                {{/each}}
+                                <a href="javascript:void(0)" class="close">✕</a>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
+            </form>
+        </div>
+    </div>
+</div>

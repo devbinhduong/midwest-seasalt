@@ -1,0 +1,59 @@
+<nav>
+    <div class="sidebarBlock">
+    <h5 class="sidebarBlock_heading 1">shop by category</h5>
+    <ul class="sidebar_block">
+      {{#each categories}}
+        <li class="sidebar_item">
+          {{#if children}}
+            <a class="sidebar_action has_menu" href="javascript:void(0)">
+              {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="4.809" height="7.49" viewBox="0 0 4.809 7.49"><path class="a" d="M8.155-7.118,4.707-3.675a.286.286,0,0,1-.209.088.286.286,0,0,1-.209-.088L.842-7.118a.288.288,0,0,1-.088-.211.288.288,0,0,1,.088-.211l.771-.767A.286.286,0,0,1,1.822-8.4a.286.286,0,0,1,.209.088L4.5-5.84,6.966-8.307A.286.286,0,0,1,7.175-8.4a.286.286,0,0,1,.209.088l.771.767a.288.288,0,0,1,.088.211A.288.288,0,0,1,8.155-7.118Z" transform="translate(8.396 8.243) rotate(-90)"/></svg></i>
+            </a>
+            <div class="sidebar_submenu"> 
+              <a class="modal-close" aria-label="{{lang 'common.close'}}" data-drop-down-close role="button">
+                <span aria-hidden="true">&#215;</span>
+              </a>
+              <ul class="sidebar_subcategory">
+                <li class="sidebar_item sidebar_all_cat">
+                  <a class="" href="{{url}}">{{name}}</a>
+                </li>
+                {{#each children}}
+                  <li class="sidebar_item">
+                      {{#if children}}
+                    <a
+                        class="sidebar_action has_submenu"
+                        href="javascript:void(0)"
+                        data-collapsible="navPages-{{id}}"
+                        data-collapsible-disabled-breakpoint="medium"
+                        data-collapsible-disabled-state="open"
+                        data-collapsible-enabled-state="closed">
+                        {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="4.809" height="7.49" viewBox="0 0 4.809 7.49"><path class="a" d="M8.155-7.118,4.707-3.675a.286.286,0,0,1-.209.088.286.286,0,0,1-.209-.088L.842-7.118a.288.288,0,0,1-.088-.211.288.288,0,0,1,.088-.211l.771-.767A.286.286,0,0,1,1.822-8.4a.286.286,0,0,1,.209.088L4.5-5.84,6.966-8.307A.286.286,0,0,1,7.175-8.4a.286.286,0,0,1,.209.088l.771.767a.288.288,0,0,1,.088.211A.288.288,0,0,1,8.155-7.118Z" transform="translate(8.396 8.243) rotate(-90)"/></svg></i>
+                    </a>
+                    <ul class="navPage-childList" id="navPages-{{id}}">
+                        {{#each children}}
+                        <li class="navPage-childList-item">
+                            <a class="navPage-childList-action navPages-action" href="{{url}}">{{name}}</a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                {{else}}
+                    <a class="sidebar_action" href="{{url}}">{{name}}</a>
+                {{/if}}
+                  
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+          {{else}}
+            <a class="sidebar_action" href="{{url}}">{{name}}</a>
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+
+    {{#if category.faceted_search_enabled}}
+        {{> components/faceted-search/index category}}
+    {{else if category.shop_by_price}}
+        {{> components/category/shop-by-price shop_by_price=category.shop_by_price category_url=category.url}}
+    {{/if}}
+</nav>

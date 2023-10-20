@@ -1,0 +1,64 @@
+---
+brands:
+---
+
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<div class="brand_page">
+<main class="page">
+	<div class="container">
+	<div class="top_banners">
+			{{#if banners.top}}
+				<div class="cat_banner" data-banner-location="top">
+					{{{limit banners.top 1}}}
+				<div class="container">
+					<div class="cp_heading">
+						<h1 class="page-heading">{{lang 'brand.label'}}</h1>
+						{{{snippet 'categories'}}}
+					</div>
+				</div>				
+			{{else}}
+				<div class="container">
+					<div class="cp_heading cp_no_banner">
+						<h1 class="page-heading">{{lang 'brand.label'}}</h1>
+					</div>
+				</div>
+			{{/if}}
+		</div>
+    
+    <ul class="brandGrid">
+        {{#each brands}}
+            <li class="brand">
+                <article class="card {{#if alternate}}card--alternate{{/if}}">
+                    <figure class="card-figure">
+                        <a href="{{url}}">
+                            <div class="card-img-container">
+                                <img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'brand_size' (cdn ../theme_settings.default_image_brand)}}" alt="{{name}}" title="{{name}}">
+                            </div>
+                        </a>
+                    </figure>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="{{url}}">{{name}}</a>
+                        </h4>
+                    </div>
+                </article>
+            </li>
+        {{/each}}
+    </ul>
+    {{> components/common/paginator pagination.brands}}
+	</div>
+</main>
+	{{#if banners.bottom}}
+		<div class="bottom_banners" data-banner-location="bottom">
+			{{{limit banners.bottom 1}}}
+		</div>
+	{{/if}}
+</div>
+{{/partial}}
+{{> layout/base}}
+<style>
+.body {margin-top: 0;}
+.body > .container{	max-width:100%; padding:0;} 
+</style>

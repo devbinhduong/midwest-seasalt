@@ -1,0 +1,13 @@
+
+{{#if product.related_products}}
+    <div class="related_products">
+		<h2>Our customers also bought</h2>
+        <section class="productCarousel">    
+			{{#each product.related_products}}
+			<div class="productCarousel-slide">
+				{{> components/products/card theme_settings=../theme_settings customer=../customer}}
+			</div>
+			{{/each}}
+		</section>
+    </div>
+{{/if}}

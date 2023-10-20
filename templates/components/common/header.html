@@ -1,0 +1,534 @@
+<header class="header" role="banner">
+  <a href="#" class="mobileMenu-toggle toggle_mn" data-mobile-menu-toggle="menu_responsive">
+    <span class="mobileMenu-toggleIcon">Toggle menu</span>
+  </a>
+  {{> components/common/navigation}}
+  <div class="header_main">
+    <div class="container">
+      <ul class="navUser-section-account">
+        <li class="navUser-item navUser-item--account">
+          {{#if customer}}
+            <a class="navUser-action" href="{{urls.account.index}}">{{lang 'common.account'}}</a>
+            <a class="navUser-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
+          {{else}}
+            <a class="navUser-action" href="{{urls.auth.login}}">Account</a>
+          {{/if}}
+        </li>
+        <li class="navUser-item nav_contact">
+          <a class="navUser-action" href="/contact">contact us</a>
+        </li>
+      </ul>
+      {{#if page_type '===' 'default'}}
+        <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
+          {{> components/common/store-logo}}
+        </h1>
+      {{else}}
+        <div class="header-logo header-logo--{{theme_settings.logo-position}}">
+          {{> components/common/store-logo}}
+        </div>
+      {{/if}}
+      <div class="navPages-container sticky_menu" id="menu">
+        <div class="container">
+          {{> components/common/navigation-menu}}
+        </div>
+      </div>
+      <ul class="navUser-section-cart">
+        <li style="display:none" class="navUser-item navUser-item--account sticky_account">
+          {{#if customer}}
+            <a class="navUser-action" href="{{urls.account.index}}">{{lang 'common.account'}}</a>
+            <a class="navUser-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
+          {{else}}
+            <a class="navUser-action" href="{{urls.auth.login}}">Account</a>
+          {{/if}}
+        </li>
+        <li style="display:none" class="navUser-item nav_contact sticky_contact">
+          <a class="navUser-action" href="/contact">contact us</a>
+        </li>
+        <li class="navUser-item navUser-item--cart">
+          <a class="navUser-action" data-cart-preview data-dropdown="cart-preview-dropdown" data-options="align:right" href="{{urls.cart}}">
+            <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span> ( <span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{cart.quantity}}</span>) </a>
+          <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+        </li>
+      </ul>
+      {{{region name="header_bottom"}}}
+    </div>
+    <div class="navPages-container" id="menu">
+      <div class="container">
+        {{> components/common/navigation-menu}}
+      </div>
+    </div>
+    <div class="mob_search">
+      <ul>
+        <li class="navUser-item search">
+          <div class="container">
+            <form class="form" action="/search.php">
+              <fieldset class="form-fieldset">
+                <div class="form-field">
+                  <label class="is-srOnly" for="search_query">Search</label>
+                  <input class="form-input" data-search-quick="" name="search_query" id="search_query" data-error-message="Search field cannot be empty." onblur="if (this.value == '') {this.value = 'SEARCH';}" onfocus="if (this.value == 'SEARCH') {this.value = '';}" value="SEARCH" autocomplete="off">
+                  <input class="search_quick" value="" type="submit">
+                </div>
+              </fieldset>
+            </form>
+            <section class="quickSearchResults" data-bind="html: results"></section>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="navPages-container" id="menu_responsive" data-menu>
+    {{#if theme_settings.halo_mobileMenu_custom}}
+    <ul class="navPages-list navPages-list-custom{{#if theme_settings.navigation_design '!==' 'simple'}} navPages-list-depth-max{{/if}}">
+        {{#each categories}}
+            {{#if name '==' ../theme_settings.category_mb_adon}}
+                {{> components/halothemes/halo-navigation-list-custom}}
+            {{/if}}
+        {{/each}}
+        {{> components/common/mobile-list }}
+    </ul>
+    {{else}}
+    <style>
+      #menu_responsive .navPages
+      {   background:#242424; padding:15px 20px;
+      }
+      #menu_responsive .navPages ul li:hover .navPage-subMenu
+      {   min-height:100%;
+      }
+      #menu_responsive  ul li
+      {   border:0; padding:5px 0; display:block; position:relative; width:100%; float:left;
+      }
+      #menu_responsive ul ul li
+      { padding: 1px 0;
+      }
+      #menu_responsive .navPages-list.navPages-list--user li:hover a.navPages-action
+      {   color:#fff;
+      }
+      #menu_responsive ul li:hover > a.navPages-action,
+      #menu_responsive ul.navPages-list.navPages-list--user li > a.navPages-action:hover
+      {   color:#88dad9;
+      }
+      #menu_responsive .navPages-action, #menu_responsive .navPage-subMenu-item>.navPage-subMenu-action
+      {  font-weight: 600; font-size: 18px; line-height: 20px;
+      }
+      #menu_responsive .user .navPages-action
+      {   letter-spacing: 0.7px;
+      }
+      .navPages-container.is-open svg, #menu_responsive  .navPages ul li:hover .navPage-subMenu
+      {   display:none;
+      }
+      #menu_responsive .navPage-subMenu  .container
+      {   padding:0;
+      }
+      #menu_responsive .navPage-subMenu .navPage-subMenu-list, #menu_responsive .navPage-subMenu  .container
+      {   display:block !important;
+      }
+      #menu_responsive .subcat-expand {
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+      }
+      #menu_responsive .accordion--navList.subcat-expanded::before
+      {   display:none;
+      }
+      #menu_responsive .navPage-subMenu
+      {   background:transparent; top:0;
+      }
+      #menu_responsive .navPages ul
+      {   width:100%; float:left;
+      }
+      #menu_responsive ul ul
+      {   width:100%; display:block; padding: 4px 0 10px 10px; background:transparent; margin:0; border:0; float: left;
+      }
+      #menu_responsive  .navPages-list + .navPages-list
+      {   float:left; margin-bottom:30px;
+      }
+      #menu_responsive
+      {   transition: all .3s ease 0s; left:0;
+      }``
+    </style>
+      <ul class="main_mob">
+        <li class="shop">
+          <a class="navPages-action" href="javascript:void(0)">Shop</a>
+          <ul>
+            <li>
+              <a href="/sitemap/categories">Collections</a>
+              <ul>
+                <li>
+                  <a href="/best-sellers/">Best Sellers</a>
+                </li>
+                <li>
+                  <a href="/on-sale/">On Sale</a>
+                </li>
+                <li>
+                  <a href="/gift-ideas/">Gift ideas</a>
+                </li>
+                <li>
+                  <a href="/whats-new/">What's New</a>
+                </li>
+                <li>
+                  <a href="/seasonal-favorites/">Seasonal Favorites</a>
+                </li>
+                <li>
+                  <a href="/popular-w-men/">Popular W/Men</a>
+                </li>
+                <li>
+                  <a href="/popular-w-women/">Popular W/ Women</a>
+                </li>
+                <li>
+                  <a href="/clearance/">Clearance</a>
+                </li>
+                <li>
+                  <a href="/samples/">Sampler Sets</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/skin-bodycare/">Skin & Body Care</a>
+              <ul>
+                <li>
+                  <a href="/100-essential-oils/">100% Essential Oils</a>
+                </li>
+                <li>
+                  <a href="/bath-bombs-fizzys/">Bath Bombs / Fizzies</a>
+                </li>
+                <li>
+                  <a href="/bath-massage-oil/">Bath & Massage Oil</a>
+                </li>
+                <li>
+                  <a href="/body-butters/">Body Butters</a>
+                </li>
+                <li>
+                  <a href="/facial-mist-toners/">Facial Mist / Toners</a>
+                </li>
+                <li>
+                  <a href="/facial-serums/">Facial Serums</a>
+                </li>
+                <li>
+                  <a href="/artisan-handmade-soaps/">Hand Made Soaps</a>
+                </li>
+                <li>
+                  <a href="/mens-facial-care/">Men’s Facial Care </a>
+                </li>
+                <li>
+                  <a href="/skin-oils/">Premium Skin Oils</a>
+                </li>
+                <li>
+                  <a href="/shower-mist/">Shower Mist</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/premium-fragrance-oils/">Fragrance Oils</a>
+              <ul>
+                <li>
+                  <a href="/spring-summer-fragrances/">Spring & Summer</a>
+                </li>
+                <li>
+                  <a href="/fall-winter-fragrances/">Fall & Winter Fragrances</a>
+                </li>
+                <li>
+                  <a href="/vanilla-fragrances/">Vanilla Fragrances</a>
+                </li>
+                <li>
+                  <a href="/warm-spicy-fragrances/">Warm & Spicy Fragrances</a>
+                </li>
+                <li>
+                  <a href="/herbal-fragrances/">Herbal Fragrances</a>
+                </li>
+                <li>
+                  <a href="/floral-fragrances/">Floral Fragrances</a>
+                </li>
+                <li>
+                  <a href="/fruity-fragrances/">Fruity Fragrances</a>
+                </li>
+                <li>
+                  <a href="/fun-fragrances/">Fun Fragrances</a>
+                </li>
+                <li>
+                  <a href="/bulk-fragrance-oils/">Bulk Fragrance Oils</a>
+                <li>
+              </ul>
+            </li>
+            <li>
+              <a href="/bath-salt-soaks/">Bath Salt Soaks</a>
+              <ul>
+                <li>
+                  <a href="/dead-sea-bath-salt-soaks/">Dead Sea Bath Salt Soaks</a>
+                </li>
+                <li>
+                  <a href="/himalayan-bath-salt-soaks/">Himalayan Salt Soak</a>
+                </li>
+                <li>
+                  <a href="/mens-bath-salt-soaks/">Men’s Bath Salt Soaks</a>
+                </li>
+                <li>
+                  <a href="/botanical-bath-salt-soaks/">Botanical Bath Salt Soaks</a>
+                </li>
+                <li>
+                  <a href="/mediterranean-sea-salt-soaks/">Mediterranean Sea Salt Soaks </a>
+                </li>
+                <li>
+                  <a href="/epsom-salt-soaks/">Epsom Salt Soaks </a>
+                </li>
+                <li>
+                  <a href="/active-recovery-soaks/">Active Recovery Soaks</a>
+                </li>
+                <li>
+                  <a href="/foaming-bath-salt-soaks/">Foaming Bath Salt Soaks </a>
+                </li>
+                <li>
+                  <a href="/salt-mine-bath-soaks/">Salt Mine Soaks </a>
+                </li>
+                {{!-- 
+                        <li>
+                          <a href="/categories/Bath-Salt/Natural-Bath-Salts/">Natural Bath Salts</a>
+                        </li>
+                        <li>
+                          <a href="/categories/Bath-Salt/Custom-Bath-Salts/">Custom Bath Salts</a>
+                        </li>
+                        <li>
+                          <a href="/categories/Bath-Salt/Epsom-Soaks/">Epsom Soaks</a>
+                        </li>
+                        <li>
+                          <a href="/foot-soaks/">Foot Soaks</a>
+                        </li>
+                        <li>
+                          <a href="/bath-salt-scoop/">Bath Salt Scoop</a>
+                        </li> --}}
+              </ul>
+            </li>
+            <li>
+              <a href="/scrubs-and-mud/">Scrubs and Mask</a>
+              <ul>
+                <li>
+                  <a href="/coffee-scrubs/">Coffee Scrubs</a>
+                </li>
+                <li>
+                  <a href="/brown-sugar-scrubs/">Brown Sugar Scrubs</a>
+                </li>
+                <li>
+                  <a href="/dead-sea-salt-scrubs/">Dead Sea Salt Scrubs</a>
+                </li>
+                <li>
+                  <a href="/himalayan-salt-scrubs/">Himalayan Scrubs</a>
+                </li>
+                <li>
+                  <a href="/superfood-scrubs/">Superfood Scrubs</a>
+                </li>
+                <li>
+                  <a href="/botanical-scrubs/">Botanical Scrubs </a>
+                </li>
+                <li>
+                  <a href="/pacific-sea-salt-scrubs/">Pacific Sea Salt Scrubs</a>
+                </li>
+                <li>
+                  <a href="/active-recovery-scrubs/">Active Recovery Scrubs</a>
+                </li>
+                <li>
+                  <a href="/dead-sea-mud/">Body & Facial Mask</a>
+                </li>
+              </ul>
+            </li>
+            {{!-- 
+            <li>
+              <a href="/mens-facial-care/">Mens Facial Care</a>
+            </li>
+            <li>
+              <a href="/facial-mist-toners/">Facial Mist / Toners</a>
+            </li>
+            <li>
+              <a href="/bath-bombs-fizzys/">Bath Bombs / Fizzys</a>
+            </li>
+            <li>
+              <a href="/bath-massage-oil/">Bath & Massage Oil</a>
+            </li>
+            <li>
+              <a href="/body-butters/">Body Butters</a>
+            </li>
+        <li>
+          <a href="/hand-sanitizers/">Hand Sanitizers</a>
+        </li>
+            <li>
+              <a href="/scented-incense/">Scented Incense</a>
+        <ul>
+          <li>
+            <a href="/a-e/">a-e</a>
+          </li>
+          <li>
+            <a href="/f-l/">f-l</a>
+          </li>
+          <li>
+            <a href="/m-r/">m-r</a>
+          </li>
+          <li>
+            <a href="/s-z/">s-z</a>
+          </li>
+        </ul> 
+            </li>
+            <li>
+              <a href="/artisan-handmade-soaps/">Artisan Handmade Soaps</a>
+            </li>
+            <li>
+              <a href="/100-essential-oils/">100% Essential Oils</a>
+            </li>
+            --}}
+          </ul>
+        </li>
+        <li class="shop">
+          <a class="navPages-action" href="javascript:void(0)">Private label</a>
+          <ul>
+            <li>
+              <a href="/private-label/">Private label</a>
+            </li>
+            <li>
+              <a href="/getting-started/">Getting started</a>
+            </li>
+            <li>
+              <a href="/about-our-products/">About our products</a>
+            </li>
+            <li>
+              <a href="/packaging-and-labeling/">Packaging and labeling</a>
+            </li>
+            <li>
+              <a href="/additional-services/">Additional services</a>
+              <ul>
+          <li>
+            <a href="/private-label-ready-program/">Private Label Ready Program</a>
+          </li>									
+        </ul>
+            </li>
+            <li>
+              <a href="/private-label-frequently-asked-questions/">Frequently asked questions</a>
+            </li>
+            <li>
+              <a href="/private-label-request-custom-quote/">Download price list</a>
+            </li>
+            <li>
+              <a href="/private-label-request-custom-quote/">Request custom quote</a>
+            </li>
+          </ul>
+        </li>
+        <li class="shop">
+          <a class="navPages-action" href="javascript:void(0)">Bulk &amp; Wholesale</a>
+          <ul>
+            <li>
+              <a href="/bulk-wholesale/">Bulk & Wholesale</a>
+            </li>
+            <li>
+              <a href="/bulk-wholesale-getting-started/">Getting started</a>
+            </li>
+            <li>
+              <a href="/about-our-products/">About our products</a>
+            </li>
+            <li>
+              <a href="/bulk-wholesale-additional-services/">Additional services</a>
+            </li>
+            <li>
+              <a href="/bulk-and-wholesale-frequently-asked-questions/">Frequently asked questions</a>
+            </li>
+            <li>
+                <a href="/wholesale-products-through-faire/">Wholesale Products W/ Faire</a>
+                <ul>
+                    <li>
+                      <a href="/bulk-and-wholesale-request-custom-quote/">Download price list</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+              <a href="/bulk-and-wholesale-request-custom-quote/">Request custom quote</a>
+            </li>
+          </ul>
+        </li>
+        <li class="shop">
+          <a class="navPages-action" href="javascript:void(0)">Information</a>
+          <ul>
+            <li>
+              <a href="/information/">Information</a>
+            </li>
+            <li>
+              <a href="/our-company/">Our company</a>
+            </li>
+            <li>
+              <a href="/shipping-returns/">Shipping and returns</a>
+            </li>
+            <li>
+              <a href="/affiliate-program/">Rewards Program</a>
+            </li>
+            <li>
+              <a href="/privacy-policy/">Privacy Policy</a>
+            </li>
+            <li>
+              <a href="/trademarks/">Trademarks</a>
+            </li>
+            <li>
+              <a href="/contact-us/">Contact us</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="user">
+        {{#if customer}}
+          <li class="navPages-item">
+            <a class="navPages-action has-subMenu" href="{{urls.account.index}}" data-collapsible="navPages-account">
+              {{lang 'common.account'}}
+              <i class="icon navPages-action-moreIcon" aria-hidden="true">
+                <svg>
+                  <use xlink:href="#icon-chevron-down" />
+                </svg>
+              </i>
+            </a>
+            <div class="navPage-subMenu" id="navPages-account" aria-hidden="true" tabindex="-1">
+              <ul class="navPage-subMenu-list">
+                <li class="navPage-subMenu-item">
+                  <a class="navPage-subMenu-action navPages-action" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
+                </li>
+                {{#if settings.returns_enabled}}
+                  <li class="navPage-subMenu-item">
+                    <a class="navPage-subMenu-action navPages-action" href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a>
+                  </li>
+                {{/if}}
+                <li class="navPage-subMenu-item">
+                  <a class="navPage-subMenu-action navPages-action" href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a>
+                </li>
+                <li class="navPage-subMenu-item">
+                  <a class="navPage-subMenu-action navPages-action" href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}
+                    </span>
+                  </a>
+                </li>
+                <li class="navPage-subMenu-item">
+                  <a class="navPage-subMenu-action navPages-action" href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a>
+                </li>
+                <li class="navPage-subMenu-item">
+                  <a class="navPage-subMenu-action navPages-action" href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a>
+                </li>
+                <li class="navPage-subMenu-item">
+                  <a class="navPage-subMenu-action navPages-action" href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="navPages-item">
+            <a class="navPages-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
+          </li>
+        {{else}}
+          <li class="navPages-item">
+            <a class="navPages-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a>
+          </li>
+          <li class="navPages-item">
+            {{#if settings.account_creation_enabled}}
+              <a class="navPages-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
+            {{/if}}
+          </li>
+        {{/if}}
+        {{#if theme_settings.social_icon_placement_top}}
+          <li class="navPages-item">
+            {{> components/common/social-links}}
+          </li>
+        {{/if}}
+      </ul>
+    {{/if}}
+  </div>
+</header>

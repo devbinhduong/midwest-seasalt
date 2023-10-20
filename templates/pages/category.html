@@ -1,0 +1,168 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+<div class="cp_page">
+	{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+		{{#if banners.top}}
+			<div class="cat_MR_banner MR_top" data-banner-location="top">
+				<div class="container">
+					<div class="bnr_MR_content">
+						{{{limit banners.top 1}}}
+					</div>
+				</div>
+			</div>
+		{{/if}}
+		<div class="top_banners">
+			{{#if category.image}}
+				<div class="cat_img">
+					<img class="lazyload" data-sizes="auto" src="{{getImage category.image}}" data-src="{{getImage category.image}}">
+				</div>
+				{{#if category.description}}
+					<div class="cat_banner">
+						<div class="container">
+							<div class="cp_heading">
+								<h1 class="page-heading">{{category.name}}</h1>
+								{{{category.description}}}
+								{{{snippet 'categories'}}}
+							</div>
+						</div>
+					</div>
+				{{else}}
+					<div class="container">
+						<div class="cp_heading cp_no_banner">
+							<h1 class="page_head">{{category.name}}</h1>
+						</div>
+					</div>
+				{{/if}}
+			{{else}}
+				{{#if category.description}}
+					<div class="cat_banner if_no_cat_img">
+						<div class="container">
+							<div class="cp_heading cp_no_banner">
+								<h1 class="page-heading">{{category.name}}</h1>
+								{{{category.description}}}
+								{{{snippet 'categories'}}}
+							</div>
+						</div>
+					</div>
+				{{else}}
+					<div class="container">
+						<div class="cp_heading cp_no_banner no_dc_img">
+							<h1 class="page_head">{{category.name}}</h1>
+						</div>
+					</div>
+				{{/if}}
+			{{/if}}
+		</div>
+	<div class="page">
+		<div class="container">
+		{{!-- {{#if category.faceted_search_enabled}}
+			<aside class="page-sidebar" id="faceted-search-container">
+				{{> components/category/sidebar}}
+			</aside>
+		{{else if category.subcategories}}
+			<aside class="page-sidebar" id="faceted-search-container">
+				{{> components/category/sidebar}}
+			</aside>
+		{{else if category.shop_by_price}}
+			{{#if theme_settings.shop_by_price_visibility}}
+				 <aside class="page-sidebar" id="faceted-search-container">
+					{{> components/category/sidebar}}
+				</aside>
+			{{/if}}
+		{{/if}} --}}
+		<aside class="page-sidebar" id="faceted-search-container">
+			{{> components/category/sidebar}}
+		</aside>
+	<div class="page-content">
+        <form class="haloSearchProductsForm">
+            <fieldset class="form-fieldset">
+                <div class="form-field">
+                    <input class="form-input" type="text" name="search" placeholder="Filter products by name, SKU,..." value="{{forms.search.query}}" data-search-input>
+                </div>
+            </fieldset>
+        </form>
+		<div class="cat_total">
+			<p>Showing all ({{{category.total_products}}} products) </p>
+		</div>
+		<main id="product-listing-container">
+			{{#if category.products}}
+
+				{{> components/category/product-listing}}
+			{{else}}
+				<p>{{lang 'categories.no_products'}}</p>
+			{{/if}}
+		</main>
+	</div>
+		</div>
+	</div>
+	{{#if banners.bottom}}
+		<div class="cat_MR_banner MR_bittom" data-banner-location="bottom">
+			<div class="container">
+				<div class="bnr_MR_content">
+					{{{limit banners.bottom 1}}}
+				</div>
+			</div>
+		</div>
+	{{/if}}
+	<div class="hp_instagram">
+		<div class="container">
+			<div id="instagram">
+				<h3>Get inspired by our instagram</h3>
+				<span><a href="https://www.instagram.com/midwestseasalt/" target="_blank"><img src="/content/insta_tag_img.jpg" alt=""></a></span>
+        	    
+        	    {{!-- <div id="instagram-feed"></div> 
+				<div id="instagram-feed-demo"></div> --}}
+                <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+                <div class="elfsight-app-fc4499b1-1364-47d4-8029-128213baf584"></div>
+        	
+			</div>
+		</div>
+	</div>
+	<div class="pg_btm_cnt">
+		<div class="container">
+			<ul>
+				<li>
+					<div>
+						<a href="/privacy-policy/"><img src="/content/pg_btm_ic1.png"><span>Safe & secured transactions</span></a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="/shipping-returns/"><img src="/content/pg_btm_ic2.png"><span>Fast & efficient shipping</span></a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="{{urls.auth.login}}"><img src="/content/envelope.jpg"><span>Sign up For Email</span></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+</div>
+{{/partial}}
+{{> layout/base}}
+<style>
+.body {margin-top: 0;}
+.body > .container{	max-width:100%; padding:0;}
+.pg_btm_cnt li img
+{ width: auto;
+}
+</style>

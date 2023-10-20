@@ -1,0 +1,142 @@
+---
+product_results:
+    limit: {{theme_settings.searchpage_products_per_page}}
+---
+{{inject 'categoryTree' forms.search.category_options}}
+{{inject 'searchProductsPerPage' theme_settings.searchpage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.product_results.previous}}
+        <link rel="prev" href="{{pagination.product_results.previous}}">
+    {{/if}}
+    {{#if pagination.product_results.next}}
+        <link rel="next" href="{{pagination.product_results.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+{{{snippet 'search'}}}
+<div class="search_page">
+<section class="nav">
+	
+	<div class="container">
+    <nav class="navBar navBar--sub">
+		{{>components/search/heading}}
+     </nav>
+    {{#unless product_results.faceted_search_enabled}}
+        {{>components/search/advanced-search}}
+    {{/unless}}
+	</div>
+</section>
+
+<section class="page">
+	{{#if banners.top}}
+		<div class="cat_MR_banner MR_top" data-banner-location="top">
+			<div class="container">
+				<div class="bnr_MR_content">
+					{{{limit banners.top 1}}}
+				</div>
+			</div>
+		</div>
+	{{/if}}
+	<div class="container">
+    {{#if product_results.products}}
+        {{#if product_results.faceted_search_enabled}}
+            <aside class="page-sidebar{{#if forms.search.section '!=' 'product'}} u-hiddenVisually{{/if}}" id="faceted-search-container">
+                {{> components/faceted-search/index product_results}}
+            </aside>
+        {{/if}}
+        
+    {{else}}
+        <main class="page-content page-content--centered">
+    {{/if}}
+        {{#if content_results}}
+            <div id="search-results-content" {{#if forms.search.section '!=' 'content'}}class="u-hiddenVisually"{{/if}}>
+                {{> components/search/content-sort-box sort=pagination.content_results.sort}}
+                <ul>
+                    {{#each content_results}}
+                        <strong><a href="{{url}}">{{{title}}}</a></strong>({{type}})
+                        <p>{{{content}}}</p>
+                    {{/each}}
+                </ul>
+                {{> components/common/paginator pagination.content_results reload=true}}
+            </div>
+
+        {{/if}}
+		{{#if theme_settings.shop_by_price_visibility}}
+			 <aside class="page-sidebar" id="faceted-search-container">
+				<div class="sidebarBlock">
+					<h5 class="sidebarBlock_heading">shop by category</h5>
+					<ul id="navList-treeview" class="navList">
+					  {{#each categories}}
+						<li class="sidebar_item">
+						  {{#if children}}
+							<a class="sidebar_action" href="{{url}}">{{name}}</a>  
+							<ul>
+							  {{#each children}}
+								<li class="sidebar_item">
+								{{#if children}}
+								  <a class="sidebar_action"href="{{url}}">{{name}}</a>
+								  <ul>
+									{{#each children}}
+									  <li class="sidebar_item">
+									  {{#if children}}
+										<a class="sidebar_action" href="{{url}}">{{name}}</a>
+										<ul>
+										  {{#each children}}
+											<li class="sidebar_item">
+											  <a class="sidebar_action" href="{{url}}">{{name}}</a>
+											</li>
+										  {{/each}}
+										</ul>
+										{{else}}
+										<a class="sidebar_action" href="{{url}}">{{name}}</a>
+									  {{/if}}
+									  </li> 
+									{{/each}}
+								  </ul>
+								{{else}}
+								  <a class="sidebar_action" href="{{url}}">{{name}}</a>
+								{{/if}}
+								</li>
+							  {{/each}}
+							</ul>
+						  {{else}}
+							<a class="sidebar_action" href="{{url}}">{{name}}</a>
+						  {{/if}}
+						</li>
+					  {{/each}}
+					</ul>
+					{{> components/common/treeview}}
+				</div>
+			</aside>
+		{{/if}}
+		<main class="page-content">
+			<div class="cat_total">
+				<p>Showing all ({{>components/search/product-count}} products) </p>
+			</div>
+			<div id="product-listing-container" {{#if forms.search.section '!=' 'product'}}class="u-hiddenVisually"{{/if}}>
+				{{> components/search/product-listing}}			
+			</div>
+		</main>
+	</main>
+	</div>
+	{{#if banners.bottom}}
+		<div class="cat_MR_banner MR_bottom" data-banner-location="bottom">
+			<div class="container">
+				<div class="bnr_MR_content">	
+					{{{limit banners.bottom 1}}}
+				</div>
+			</div>
+		</div>
+	{{/if}}
+</section>
+</div>
+</div>
+{{/partial}}
+{{> layout/base}}
+<style>
+.body {margin-top: 0;}
+.body > .container{	max-width:100%; padding:0;} 
+</style>
+  

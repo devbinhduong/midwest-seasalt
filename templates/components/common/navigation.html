@@ -1,0 +1,35 @@
+<nav class="navUser">
+    <div class="dropdown dropdown--quickSearch" id="quickSearch" aria-hidden="true" data-prevent-quick-search-close>
+        {{> components/common/quick-search-custom name='nav-quick-search'}}
+    </div>
+	<div class="container">
+    {{> components/common/currency-selector}}
+	<ul class="nav_section">
+        <li><a class="navUser-action email" href="mailto:contact@midwestseasaltcompany.com">Email Us</a></li>
+		<li><a class="navUser-action tel"href="tel:1 513 770 9177">Call now</a></li>
+	</ul>
+    {{!-- <h3 class="free_shipp">Only $100 until FREE SHIPPING!</h3> --}}
+    <ul class="navUser-section navUser-section--alt">
+        {{#if customer.store_credit.value '>' 0}}
+            <li class="navUser-item">
+                <a class="navUser-action navUser-action--storeCredit"
+                   data-dropdown="storeCredit-dropdown"
+                   data-options="align:bottom"
+                   href="{{urls.cart}}">
+                        <span class="navUser-action-divider">{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}</span>
+                </a>
+                <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+                    {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                </div>
+            </li>
+        {{/if}}
+        <li class="navUser-item">
+            <a class="navUser-action navUser-item--compare" href="{{urls.compare}}" data-compare-nav>{{lang 'common.compare'}} <span class="countPill countPill--positive countPill--alt"></span></a>
+        </li>
+		<li class="navUser-item navUser-item--social">
+			{{> components/common/social-links}}
+		</li> 
+	</ul>
+	</div>
+</nav>
+ 

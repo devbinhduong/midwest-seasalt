@@ -1,0 +1,43 @@
+<div class="hero_carousel">
+	<section class="heroCarousel"
+		data-slick='{
+			"mobileFirst": true,
+			"slidesToShow": 1,
+			"slidesToScroll": 1,
+			"autoplay": true,
+			"arrows":false,
+			"dots": false,
+			"autoplaySpeed": {{carousel.swap_frequency}},
+			"lazyLoad": "anticipated"
+		}'>
+		{{#each carousel.slides}}
+		<a href="{{url}}">
+			<div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
+				<div class="heroCarousel-image-wrapper" {{#if image_height}}{{#if image_width}}style="height: {{multiply (divide image_height image_width) 100}}vw"{{/if}}{{/if}}>
+					<img class="heroCarousel-image" data-lazy="{{image}}" alt="{{alt_text}}" title="{{alt_text}}"
+					{{#if image_width}}width="{{image_width}}"{{/if}} {{#if image_height}}height="{{image_height}}"{{/if}} />
+				</div>
+				{{#if heading}}
+					{{> components/carousel-content show_background=true}}
+				{{else}}
+					{{#if text}}
+						{{> components/carousel-content show_background=true}}
+					{{else}}
+						{{#if button_text}}
+							{{> components/carousel-content show_background=false}}
+						{{/if}}
+					{{/if}}
+				{{/if}}
+			</div>
+		</a>
+		{{/each}}
+	</section>
+
+	<div class="top_section">
+		<div class="heroCarousel-content">
+			<h1 class="heroCarousel-title">At the Midwest Sea Salt Company, we are committed to using sea salts to enhance our lives.</h1>
+			<p class="heroCarousel-description">We are all about using sea salts to enhance our physical, mental and emotional state. Take your bath & body experience to the next level with the best nature has to offer.</p>
+				<a href="/scrubs-and-mud/" class="heroCarousel-action button button--primary button--large">Explore</a>
+		</div>
+	</div>
+</div>

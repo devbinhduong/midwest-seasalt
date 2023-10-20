@@ -1,0 +1,1 @@
+{"components/custom/load-more":"<div class=\"page-load-status\">\r\n  <p class=\"infinite-scroll-request\">\r\n    <img src=\"/content/loader_image.png\"/>\r\n  </p>\r\n  <p class=\"infinite-scroll-last\">More products Coming Soon</p> \r\n</div>\r\n"}

@@ -1,0 +1,66 @@
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+<main class="cms_page cms_left_menus page">     
+	<div class="main_cate">
+		<div class="container">
+			<div class="cms_left">
+				<ul class="cms_cat_list">    
+					<li>
+						<a href="/bulk-wholesale/">Bulk & Wholesale</a>
+					</li>
+					<li>
+						<a href="/bulk-wholesale-getting-started/">Getting started</a>
+					</li>
+					<li>
+						<a href="/bulk-wholesale-about-our-products/">About our products</a>
+					</li>
+					<li>
+						<a href="/bulk-wholesale-additional-services/">Additional services</a>
+					</li>
+					<li>
+						<a href="/bulk-and-wholesale-frequently-asked-questions/">Frequently asked questions</a>
+					</li>
+					<li>
+						<a href="/wholesale-products-through-faire/">Wholesale Products W/ Faire</a>
+						<ul class="mm_sub_cat_list">
+						    <li>
+    							<a href="/bulk-and-wholesale-request-custom-quote/">Download price list</a>
+    						</li>
+						</ul>
+					</li>
+				</ul>
+				<div class="cms_button">
+					<a class="button" href="/bulk-and-wholesale-request-custom-quote/">Request Custom quote</a>
+				</div>
+			</div>
+			<div class="cms_right">
+				<div class="page-content page-content--centered">
+					{{#replace '%%Syndicate%%' page.content}}
+						{{> components/page/rss_feed}}
+					{{else}}
+					    {{{page.content}}}
+					{{/replace}}
+				</div>
+			</div>
+			{{#if page.feed}}
+				<ul>
+					{{#each page.feed}}
+						<li>
+							<h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
+							<p>{{content}}</p>
+						</li>
+					{{/each}}
+				</ul>
+			{{/if}}
+		</div>
+	</div>
+</main>
+
+{{/partial}}
+{{> layout/base}}
+<style>
+.body {margin-top:0;}
+.body > .container{	max-width:100%; padding:0;} 
+</style>

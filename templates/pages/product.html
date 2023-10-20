@@ -1,0 +1,118 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: 4
+    similar_by_views:
+        limit: 4
+---
+{{#partial "page"}}
+<div class="product_page">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert-info message}}
+    {{/each}}
+
+    <div itemscope itemtype="http://schema.org/Product">
+	
+		<div class="container">
+			{{> components/products/product-view schema=true}}
+		</div>
+		
+		<div class="review_full_block">
+			<div class="container">
+				<div id="Reviews" class="review_inner_content">
+					{{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+					<div class="writeReview_btn">
+						<span class="productView_reviewLink">
+							<a class="button" href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+							   {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
+							   {{lang 'products.reviews.new'}}
+							</a>
+						</span>
+					</div>
+					{{> components/products/modals/writeReview}}
+				</div>
+			</div>
+		</div>
+		
+		<div class="container">
+			{{> components/products/tabs}}
+		</div>
+    </div>
+	<div class="hp_instagram">
+		<div class="container">
+			<div id="instagram">
+				<h3>Get inspired by our instagram</h3>
+				<span><a href="https://www.instagram.com/midwestseasalt/" target="_blank"><img src="/content/insta_tag_img.jpg" alt=""></a></span>
+        	    
+        	    {{!-- <div id="instagram-feed"></div> 
+				<div id="instagram-feed-demo"></div> --}}
+                <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+                <div class="elfsight-app-fc4499b1-1364-47d4-8029-128213baf584"></div>
+        	
+			</div>
+		</div>
+	</div>
+	<div class="pg_btm_cnt">
+		<div class="container">
+			<ul>
+				<li>
+					<div>
+						<a href="/privacy-policy/"><img src="/content/pg_btm_ic1.png"><span>Safe & secured transactions</span></a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="/shipping-returns/"><img src="/content/pg_btm_ic2.png"><span>Fast & efficient shipping</span></a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="{{urls.auth.login}}"><img src="/content/envelope.jpg"><span>Sign up For Email</span></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+{{/partial}}
+{{> layout/base}}
+
+<style>
+.body{margin:0;}
+.body > .container{	max-width:100%; padding:0;}
+</style>
+<script text="text/javascript">
+   var _learnq = _learnq || [];
+
+   var item = {
+    Name: "{{product.title}}",
+    ProductID: "{{product.id}}",
+    ImageURL: "{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}",
+    URL: "{{product.url}}",
+    Brand: "{{product.brand.name}}",
+    Price: "{{product.price.without_tax.value}}",
+    CompareAtPrice:"{{product.price.rrp_without_tax.value}}"
+   };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+
+  _learnq.push(['trackViewedItem', {
+   Title: item.Name,
+   ItemId: item.ProductID,
+   Categories: item.Categories,
+   ImageUrl: item.ImageURL,
+   Url: item.URL,
+
+   Metadata: {
+     Brand: item.Brand,
+     Price: item.Price,
+     CompareAtPrice: item.CompareAtPrice
+   }
+  }]);
+</script>

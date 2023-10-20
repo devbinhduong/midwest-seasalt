@@ -1,0 +1,25 @@
+<form action="{{product.add_to_wishlist_url}}" class="form form-wishlist form-action" data-wishlist-add method="post">
+    <a aria-controls="wishlist-dropdown" aria-expanded="false" class="btnwishlist dropdown-menu-button" data-dropdown="wishlist-dropdown">
+        <span>Add to Wishlist</span>
+        <i aria-hidden="true" class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13.593" height="12" viewBox="0 0 13.593 12">
+              <path id="Path_20" data-name="Path 20" d="M9.982,30a3.218,3.218,0,0,0-2.01.695A4.579,4.579,0,0,0,6.8,32.109a4.578,4.578,0,0,0-1.176-1.414A3.218,3.218,0,0,0,3.611,30,3.69,3.69,0,0,0,0,33.916c0,2.412,1.937,4.062,4.868,6.561.5.424,1.062.905,1.649,1.418a.425.425,0,0,0,.559,0c.587-.513,1.151-.994,1.649-1.418,2.931-2.5,4.868-4.148,4.868-6.56A3.69,3.69,0,0,0,9.982,30Z" transform="translate(0 -30)"/>
+            </svg>
+        </i>
+    </a>
+    <ul aria-hidden="true" class="dropdown-menu" data-dropdown-content id="wishlist-dropdown" tabindex="-1">
+        {{#if customer.wishlists}} {{#each customer.wishlists}}
+        <li>
+            <input class="button {{#if this.num_items '!==' '0'}}button--has-items{{/if}}" formaction="{{this.add_url}}&product_id={{../product.id}}"
+                type="submit" value="{{this.name}}">
+        </li>
+        {{/each}} {{else}}
+        <li>
+            <input class="button" type="submit" value="{{lang 'account.wishlists.add_to_default'}}">
+        </li>
+        {{/if}}
+        <li>
+            <a data-wishlist class="button" href="/wishlist.php?action=addwishlist&product_id={{product.id}}">{{lang 'account.wishlists.create_new'}}</a>
+        </li>
+    </ul>
+</form>

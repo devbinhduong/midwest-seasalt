@@ -1,0 +1,229 @@
+.ExpressCheckout .btn
+{	letter-spacing:1px; font-weight:400;  
+}
+.adminBar, .AdminBar, .MaintenanceModeNotice
+{	display:none !important;
+}
+body.hasAdminBar .header, body.hasAdminBar, body.hasAdminBar .header
+{	padding-top:0; 
+} 
+table.CartContents tr th 
+{   text-transform: uppercase; letter-spacing: 1px; font-size: 12px; font-weight: 700;
+}
+#SimilarMultiProductsByCustomerViews 
+{   display: none !important;
+}
+#uniform-creditcard_ccexpy 
+{	float:right;
+}
+#CheckoutStepPaymentDetails dd, .AddBillingAddress dd, .AddShippingAddress dd
+{	width: 300px;
+}
+#uniform-creditcard_ccexpm, #uniform-creditcard_ccexpy, div#uniform-creditcard_issuedatey, div#uniform-creditcard_issuedatem, #uniform-eway_ccexpm, #uniform-eway_ccexpy, #uniform-cc_ccexpm, #uniform-cc_ccexpy, #uniform-NMI_ccexpm, #uniform-NMI_ccexpy, #uniform-AuthorizeNet_ccexpm, #uniform-AuthorizeNet_ccexpy, #uniform-PayflowPro_ccexpm, #uniform-PayflowPro_ccexpy
+{	width: 49% !important;
+}
+.selector span 
+{ 	background: 0 0!important;
+}
+div.selector 
+{ 	background: url('../img/dropdown_arrow.png') 97% center no-repeat #fff!important; 
+}
+textarea, input[type="email"], input[type="text"], input[type="password"], input.Textbox
+{	padding-top:0; padding-bottom:0; 
+}  
+input.Textbox, textarea, input[type="text"], input[type="password"]
+{	line-height: normal; 
+}
+input.Textbox, textarea, input[type="text"], input[type="password"], div.selector, .ExpressCheckoutBlockCompleted a.ChangeLink
+{	border-radius:0;
+}
+#CheckoutStepBillingAddress .HorizontalFormContainer dd > label\
+{	line-height:normal;
+} 
+#Header > .inner
+{	padding:0;
+}
+#LoginForm .HorizontalFormContainer dd > a:hover
+{	color:#88dad9;
+}
+.ExpressCheckoutBlockCompleted a.ChangeLink, .ExpressCheckoutBlockCompleted a.ChangeLink:hover
+{	color:#000;
+}
+.ExpressCheckoutBlock .step
+{	background-color: #88dad9;
+}
+.ExpressCheckoutBlockCollapsed .step
+{	background-color: #000;
+}
+.btn
+{  	border:0; border-radius:0; background: #88dad9;	color: #242424; letter-spacing:1px;
+}
+.btn:hover
+{	background: #000; color: #fff; letter-spacing:1px; 
+} 
+.header   
+{	background: #fff  !important; display: block; width: 100%; background-size:auto;
+}
+.header-logo
+{	text-align:center; padding: 26px 0 21px; margin:0;  
+} 
+.container, .inner 
+{   margin: 0 auto; width: 100%; max-width:1140px !important;
+}
+#uniform-creditcard_ccexpy 
+{	float:right;
+}
+div.selector
+{	max-width:100%; 
+}
+.header-logo img
+{	max-height:75px; 
+}
+.CartContents tfoot .CheckoutRedeemCoupon td .btn#apply_code
+{	height:40px; line-height:40px; padding:0 15px;
+}
+
+@media only screen and (max-width :1140px) 
+{
+	.container, .inner
+	{	padding:0 !important; width:100% !important;
+	}
+	div.selector select
+	{	max-width:100%;
+	}
+	.fullwidth
+	{	padding: 0 !important;
+	}
+	.footer-links p
+	{	text-align:center;
+	}
+	.Content .Block
+	{	padding:0 15px;
+	}
+}
+ 
+@media only screen and (max-width: 990px)
+{
+	.ExpressCheckoutBlock
+	{	padding:30px 0;
+	}
+	.ExpressCheckoutContent .CreateAccount, .ExpressCheckoutContent .AccountLogin
+	{	width:100%; padding:0; 
+	}
+	.HorizontalFormContainer
+	{	max-width:none; 
+	}
+	.HorizontalFormContainer dt, .HorizontalFormContainer dd
+	{	width:100%; margin:0 !important; padding:0 !important; text-align: left;
+	}
+	.HorizontalFormContainer dd
+	{	padding-bottom:15px !important; margin-left:0;
+	}
+	.FloatLeft
+	{	width:100%;	
+	}
+	#CheckoutStepPaymentDetails dd, .AddBillingAddress dd, .AddShippingAddress dd, 
+	.CartContents tfoot .SubTotal td
+	{	width:100%;
+	}
+	#ContactForm .Submit, #CheckoutStepPaymentDetails .Submit
+	{	margin:0;
+	}   
+	.SelectBillingAddress .FloatLeft
+	{	width:auto;
+	}
+	img.FloatLeft
+	{	width:auto;
+	}
+} 
+
+@media screen and (min-width: 800px) and (max-width: 980px)
+{
+	.ExpressCheckoutBlock
+	{	padding:30px 70px; 
+	}	
+}
+
+@media screen and (max-width:767px) 
+{
+	.ExpressCheckoutContent .HorizontalFormContainer dd, .HorizontalFormContainer dt, #uniform-sel_billing_address
+	{	width:100% !important;
+	}
+	#CheckoutStepPaymentDetails dd, .AddBillingAddress dd, .AddShippingAddress dd
+	{	width:100% !important;
+	}
+	.ExpressCheckoutContent .CreateAccount, .ExpressCheckoutContent .AccountLogin
+	{	width:100%;
+	}
+	.HorizontalFormContainer dt
+	{	text-align:left; padding-bottom:10px;
+	}
+	#ContactForm dd, #CheckoutStepPaymentDetails dd
+	{	margin-left:0;
+	}
+	.FloatLeft
+	{	float: none;
+	}
+	.ExpressCheckoutBlock
+	{	padding-left: 0;  padding-right: 0;
+	}
+	.btn
+	{	padding:12px; 
+	}
+	.AccountLogin .HorizontalFormContainer dd
+	{	padding-bottom:0 !important; 
+	}
+	.SelectBillingAddress .FloatLeft
+	{	width:auto;
+	}
+	#shareDescription
+	{	display:block;
+	} 
+	img.FloatLeft
+	{	width:auto;
+	}
+	.header-logo-image
+	{	max-height:65px;   
+	}
+}
+ 
+@media screen and (max-width:600px)
+{
+	.CartContents tfoot .CheckoutRedeemCoupon
+	{	padding:0;
+	}
+	.header-logo img 
+	{   max-height: 50px; 
+	}
+} 	
+
+@media screen and (max-width:479px) 
+{
+	.CartContents tfoot .SubTotal td
+	{	width: auto;
+	}
+	.HorizontalFormContainer dd
+	{	padding-bottom:0 !important;
+	}
+	.ExpressCheckoutBlock .ExpressCheckoutTitle h3
+	{	font-size:20px;
+	}
+	.ExpressCheckoutContent .selector option
+	{	padding-left:5px;
+	}
+	#shareDescription
+	{	display:block;
+	}
+	#ChooseBillingAddress label, #ChooseShippingAddress label
+	{	font-size:13px;
+	}
+	.ExpressCheckoutContent .CartContents > thead
+	{	display:none !important;
+	}
+	.header-logo-image
+	{	max-height:45px; 
+	}
+	
+}
+
+

@@ -1,0 +1,323 @@
+<footer class="footer" role="contentinfo">
+    <div class="container">    
+
+        <section class="footer-info">
+			<article class="footer-info-col footer-info-col--small" data-section-type="footer-categories">
+                <h5 class="footer-info-heading">Get to know us</h5>
+                <ul class="footer-info-list">
+					<li>
+						<a href="/our-company/">Our Company</a>
+					</li>
+					<li>
+						<a href="https://www.youtube.com/watch?v=LQ27w2VyRAc" target="_">YouTube Video Series</a>
+					</li>
+					<li>
+						<a href="{{urls.sitemap}}">Site Map</a>
+					</li>
+					<li>
+						<a href="/rewards-program/">Rewards Program</a>
+					</li>
+                </ul>
+            </article>
+			<article class="footer-info-col footer-info-col--small" data-section-type="footer-categories">
+                <h5 class="footer-info-heading">Customer service</h5>
+                <ul class="footer-info-list">
+                        <li>
+							<a href="/contact">Contact Us</a>
+                        </li>
+						<li>
+                            <a href="/shipping-returns/">Shipping & Returns</a>
+                        </li>
+						<li>
+                            <a href="/login.php?from=account.php%3Faction%3Dorder_status">Order Tracking</a>
+                        </li>
+						<li>
+                            <a href="/giftcertificates.php">Gift Certificates</a>
+                        </li>
+                </ul>
+            </article>
+			<article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
+                <h5 class="footer-info-heading">Our Services</h5>
+               <ul class="footer-info-list">
+                        <li>
+                            <a href="/private-label/">Private label</a>
+                        </li>
+                        <li>
+                            <a href="/bulk-wholesale/">Bulk &amp; Wholesale</a>
+                        </li>
+						<li>
+                            <a href="/affiliate-program/">Reward Program</a>
+                        </li>
+                        <li>
+                            <a href="/wholesale-products-through-faire/">Wholesale w/ Faire</a>
+                        </li>
+                </ul>
+            </article>
+			<article class="footer-info-col policy footer-info-col--small" data-section-type="footer-categories">
+                <h5 class="footer-info-heading">POLICIES</h5>
+                <ul class="footer-info-list">
+                        <li>
+                            <a href="/privacy-policy/">Privacy Policy</a>
+                        </li>
+						<li>
+                            <a href="/trademarks/">Trademarks</a>
+                        </li>
+                </ul>
+            </article>
+            <article class="footer-info-col
+                footer-info-col--social
+                footer-info-col--{{#if theme_settings.social_icon_placement_bottom '===' 'bottom_left'}}left{{else}}right{{/if}}"
+                data-section-type="footer-webPages">
+                    <h5 class="footer-info-heading">{{lang 'social.connect'}}</h5>
+                    {{> components/common/social-links}}
+					<ul class="nav_section">
+						<li><a class="navUser-action tel"href="tel:1 513 770 9177">1-513-770-9177</a></li>
+						<li><a class="navUser-action email" href="mailto:contact@midwestseasaltcompany.com">contact@midwestseasaltcompany.com</a></li>
+						{{!-- <li><a class="navUser-action affiliate"href="https://affiliates.midwestseasaltcompany.com/" target="_blank">Become an Affiliate</a></li> --}}
+					</ul>
+            </article>
+    </div>
+	<div class="copy_right">
+		<p>Copyright © {{moment format="YYYY"}} {{settings.store_name}} Inc. All rights reserved.</p>
+	</div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+
+<!-- 10020 -->
+<script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script>
+<script>
+function infiniteScroll() {
+    const elem = document.querySelector('.productGrid');
+    const infScroll = new InfiniteScroll(elem, {
+        // options
+        path: '.pagination-item--next .pagination-link',
+        append: '.product',
+        history: false,
+        status: '.page-load-status'
+    });
+    return infScroll;
+}
+
+infiniteScroll();
+</script>
+<!-- 10020 -->
+
+<script>
+$('.quickSearchResults .modal-close').live('click', function(){
+	$('.quickSearchResults .productGrid').css("display", "none");
+	$(this).hide();
+});
+</script>
+<script>
+$('.sidebarBlock .sidebar_block > li > a.has_menu').live('click', function(){
+	$(this).siblings(".sidebar_submenu").slideToggle();
+	$(this).parent().siblings().children(".sidebar_submenu").slideUp();
+	$(this).parent(".sidebar_item").toggleClass("active");
+});
+$('.sidebarBlock .sidebar_block  li  a.has_submenu').live('click', function(){
+	$(this).siblings(".navPage-childList").slideToggle();
+	$(this).parent().siblings().children(".navPage-childList").slideUp();
+	$(this).parent(".sidebar_item").toggleClass("active");
+});
+
+
+
+ $(document).on('click','#menu_responsive a', function(event){
+    alert("enter");
+  });
+
+
+$('.sidebarBlock .sidebar_block .modal-close').live('click', function(){
+	$(this).parent().parent().removeClass('is-open');
+});
+</script>
+<script>
+$('.nav_list_mn > li > a').on('click', function(){
+$(this).parent().toggleClass('is_open');
+$(this).parent().siblings().removeClass('is_open');
+});
+</script>
+<script type="text/javascript">
+	jQuery(document).ready(function($){
+	 setInterval(function() {
+		$(window).scroll(function() {
+			(getScrollTop() >= 150) ? $('.header').addClass('header_fixed') : $('.header').removeClass('header_fixed');
+			(getScrollTop() >= 150) ? $('body').addClass('sticky_active') : $('body').removeClass('sticky_active');
+		});
+	}, 2000);
+	});
+	function getScrollTop() {
+		if(typeof pageYOffset!= 'undefined'){
+			return pageYOffset;
+		} else {
+			var B = document.body;
+			var D = document.documentElement;
+			D = (D.clientHeight)? D : B;
+			return D.scrollTop;
+		}
+	}
+</script>
+
+<script>
+	$('.ctm_mn_sort .select_lable').live('click', function(){
+		$(this).parent().toggleClass('dropdown_open');
+	});
+	$('.mn_sort_inner .modal-close').live('click', function(){
+		$(this).parent().parent().removeClass('dropdown_open');
+	});
+	$('.custom_sortby > li > a').live('click', function(){
+		var get_val_mn, get_val;
+		get_val = $(this).attr('value');
+		$('.form-fieldset.actionBar-section .form-select option').each(function(){
+			get_val_mn = $(this).val();
+			if ( get_val_mn === get_val){
+				$(this).attr('selected','selected');
+				$(this).siblings().removeAttr('selected');
+				obj= document.getElementById("sort")
+				fireEvent(obj,'change');
+			}
+		});
+		function fireEvent(element,event){
+			if (document.createEventObject){
+				var evt = document.createEventObject();
+				return element.fireEvent('on'+event,evt)
+			}
+			else{
+				var evt = document.createEvent("HTMLEvents");
+				evt.initEvent(event, true, true );
+				return !element.dispatchEvent(evt);
+			}
+		}
+	});
+</script>
+<script>
+$('.productView-product .go_reviews').live('click', function(){
+	$('html, body').animate({
+		scrollTop: ($('.review_full_block').offset().top - 200)
+	},1200);
+	/*
+	$('.pro_reviews_tab').children('.accordion-title')[0].click();
+	$('.pro_reviews_tab').children('.accordion-title').attr('aria-expanded','true');
+	$('.pro_reviews_tab.pro_reviews_tab').addClass('is-open');
+	$('.pro_reviews_tab.pro_reviews_tab').siblings().removeClass('is-open');
+	$('.pro_reviews_tab.pro_reviews_tab').children('.accordion-content').addClass('is-open');
+	$('.pro_reviews_tab.pro_reviews_tab').siblings().children('.accordion-content').removeClass('is-open');
+	*/
+});
+</script>
+
+
+<script>
+review_on_card();
+function review_on_card(){
+$('.search_page .productGrid li').each(function(){
+	var productsli = $(this);
+	var pro_url = $(this).children('.card').children('.card-figure').children('a').attr('href');
+	$.ajax({
+		type: 'GET',
+		url: pro_url,
+		success: function(data){
+			var pro_count = $(data).find('.productView-product .productView-rating .productView-reviewLink').attr('data-count');
+			$(productsli).children('.card').children('.card-body').children('.card_rating').children('.card_rate_count').html(pro_count);
+		}
+	});
+	});
+}
+$(".search_page .pagination-list li").live('click',function(){
+	setTimeout(function(){
+		review_on_card();
+	},5000);
+});
+$(".search_page .actionBar select").change('click',function(){
+	setTimeout(function(){
+		review_on_card();
+	},5000);
+});
+</script>
+
+<script type="text/javascript">
+$('#prodAccordion .Block h2').click(function() { $(this).css('outline','none'); if($(this).parent().hasClass('current')) { $(this).siblings('div').slideUp('slow',function() { $(this).parent().removeClass('current'); }); } else { $('#prodAccordion .Block .prodAccordionContent').slideUp('slow',function() { $(this).parent().removeClass('current'); }); $(this).siblings('div').slideToggle('slow',function() { $(this).parent().toggleClass('current'); }); } return false; });
+</script>
+
+<script type="text/javascript">
+/*	var access_token = "2049402480.1677ed0.28e8f0f4add045a99e4a228967efe6b3";
+	var resolution = "thumbnail";
+	var user_id = "2049402480";
+	var start_url = "https://api.instagram.com/v1/users   user_id +"/media/recent/?access_token="+ access_token;
+
+	$(function() {
+		$.ajax({
+			type: "GET",
+			dataType: "jsonp",
+			cache: false,
+			url: start_url ,
+			success: function(data) {
+			    console.log(data);
+			count = 4;
+				for (var i = 0; i < count; i++) {
+					if (typeof data.data[i] !== 'undefined' ) {
+					$("#instagram").append("<div class='instagram-wrap' id='pic-"+ data.data[i].id +"' ><a target='_blank' href='" + data.data[i].link +"'><img class='instagram-image' src='" + data.data[i].images.standard_resolution.url +"' /><div class='border_btm'></div></a></div>");
+					}
+				}
+			}
+		});
+	}); */
+</script>
+{{#if theme_settings.halo_mobileMenu_custom '!==' true }}
+<script>
+        jQuery(document).ready(function() { jQuery('#menu_responsive li div, #menu_responsive li ul').prev("a").addClass("sub_nav").after('<span class="subcat-expand"></span>'); jQuery('#menu_responsive li div, #menu_responsive li ul').hide(); jQuery('#menu_responsive .subcat-expand').click(function(){ jQuery(this).toggleClass('subcat-expanded'); jQuery(this).siblings("#menu_responsive div, #menu_responsive ul").slideToggle("slow").closest('#menu_responsive div, #menu_responsive ul').toggleClass('subcatActive'); }); });
+</script>
+{{/if}}
+
+
+
+<script data-cfasync="false">window.ju_num="C025B7BA-FB78-4526-AF01-3168A9BD3304";window.asset_host='//cdn.justuno.com/';(function(i,s,o,g,r,a,m){i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)};a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script',asset_host+'vck.js','juapp');</script>
+
+
+<script src="/content/jquery.instagramFeed.js"></script>
+<script>
+(function($){
+       $(window).on('load', function(){
+           $.instagramFeed({
+               'username': 'midwestseasalt',
+               'container': "#instagram-feed",
+               'display_profile': false,
+               'display_biography': false,
+               'display_gallery': true,
+               'get_raw_json': false,
+               'callback': null,
+               'styling': true,
+               'items': 4,
+               'items_per_row': 4,
+               'margin': 0
+           });
+       });
+   })(jQuery);
+</script>
+<script>
+(function($){
+		$(window).on('load', function(){
+			$.instagramFeed({
+				'username': 'midwestseasalt',
+				'container': "#instagram-feed-demo",
+				'display_profile': false,
+				'display_biography': false,
+				'display_gallery': true,
+				'get_raw_json': false,
+				'callback': null,
+				'styling': true,
+				'items': 4,
+				'items_per_row': 4,
+				'margin': 0 
+			});
+		});
+	})(jQuery);
+</script>
+<script>
+$('.forpurplebtn').live('click', function(){
+  var get_id = $(this).attr('data-scroll');
+  $('html, body').animate({
+    scrollTop: ($(get_id).offset().top - 500)
+  },200);
+});
+</script>

@@ -1,0 +1,45 @@
+<div class="container">
+	<ul class="tabs" data-tab>
+		{{#if product.description}}
+			<li class="tab is-active">
+				<a class="tab-title" href="#tab_description">Description</a>
+			</li>
+		{{/if}}
+		{{#if product.warranty}}
+			<li class="tab">
+				<a class="tab-title" href="#tab_warranty">Warranty</a>
+			</li>
+		{{/if}}
+		<li class="tab">
+			<a class="tab-title reviewTabLink" href="#tab_reviews">Reviews</a>
+		</li>
+	</ul>
+</div>
+
+<div class="tabs-contents">
+	<div class="container">
+		{{#if product.description}}
+			<div class="tab-content is-active" id="tab_description">
+				{{{product.description}}}
+				{{{snippet 'product_description'}}}
+			</div>
+		{{/if}}
+	   {{#if product.warranty}}
+		   <div class="tab-content" id="tab_warranty">
+			   {{{product.warranty}}}
+		   </div>
+	   {{/if}}
+		<div class="tab-content" id="tab_reviews">
+			{{#if settings.show_product_reviews}}
+				<span class="productView_reviewLink">
+					<a class="button" href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+					   {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
+					   {{lang 'products.reviews.new'}}
+					</a>
+				</span>
+				{{> components/products/modals/writeReview}}
+			{{/if}}
+			{{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+		</div>
+	</div>
+</div>

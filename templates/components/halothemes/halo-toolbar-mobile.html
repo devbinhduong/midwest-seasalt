@@ -1,0 +1,46 @@
+<div class="halo-sticky-toolbar-mobile">
+    <div class="bottom-bar">
+        <ul class="bottom-bar--list">
+            <li class="list-item">
+                <a href="/">
+                    <span class="icon"><svg><use xlink:href="#icon-toolbar-home" /></svg></span>
+                    <span class="text">Home</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a role="link" aria-disabled="true" data-search-mobile>
+                    <span class="icon"><svg><use xlink:href="#icon-toolbar-search" /></svg></span>
+                    <span class="text">Search</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="{{theme_settings.btn_link_collection}}">
+                    <span class="icon"><svg><use xlink:href="#icon-toolbar-shop" /></svg></span>
+                    <span class="text">Collection</span>
+                </a>
+            </li>
+            <li class="list-item">
+                {{#if customer}}
+                    <a href="{{urls.account.index}}" aria-label="{{lang 'common.account'}}">
+                        <span class="icon"><svg><use xlink:href="#icon-toolbar-account" /></svg></span>
+                        <span class="text">Account</span>
+                    </a>
+                {{else}}
+                    <a href="{{urls.auth.login}}" aria-label="{{lang 'common.login'}}">
+                        <span class="icon"><svg><use xlink:href="#icon-toolbar-account" /></svg></span>
+                        <span class="text">Account</span>
+                    </a>
+                {{/if}}
+            </li>
+            <li class="list-item">
+                <a href="{{urls.cart}}" aria-label="{{lang 'cart.nav_aria_label'}}" data-cart-sidebar>
+                    <span class="icon"><svg><use xlink:href="#icon-toolbar-cart" /></svg></span>
+                    <span class="text">Cart</span>
+                    <div class="cart-count-bubble">
+                        <span class="text countPill cart-quantity" aria-hidden="true"></span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

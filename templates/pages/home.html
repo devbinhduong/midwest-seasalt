@@ -1,0 +1,74 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+carousel: {{theme_settings.homepage_show_carousel}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+---
+{{#partial "hero"}}
+    {{#if carousel}}
+        {{> components/carousel}}
+    {{/if}}
+    {{{snippet 'home_content'}}}
+{{/partial}}
+
+{{#partial "page"}}
+<div class="main full">
+	<div class="product_new">
+		<div class="container">
+            {{#if products.featured}}
+                {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
+            {{/if}}
+		</div>
+	</div>
+	{{> components/allsectionbanner/banner find="banner_section1"}}
+
+	<div class="hp_instagram">
+		<div class="container">
+			<div id="instagram">
+				<h3>Get inspired by our instagram</h3>
+				<span><a href="https://www.instagram.com/midwestseasalt/" target="_blank"><img src="/content/insta_tag_img.jpg" alt=""></a></span>
+				{{!-- <div id="instagram-feed"></div>
+				<div id="instagram-feed-demo"></div> --}}
+				<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+                <div class="elfsight-app-fc4499b1-1364-47d4-8029-128213baf584"></div>
+			</div>
+		</div>
+	</div>
+	<div class="pg_btm_cnt">
+		<div class="container">
+			<ul>
+				<li>
+					<div>
+						<a href="/privacy-policy/"><img src="/content/pg_btm_ic1.png"><span>Safe & secured transactions</span></a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="/shipping-returns/"><img src="/content/pg_btm_ic2.png"><span>Fast & efficient shipping</span></a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="{{urls.auth.login}}"><img src="/content/envelope.jpg"><span>Sign up For Email</span></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+    
+{{/partial}}
+{{> layout/base}}
+
+<style>
+.body > .container{	max-width:100%; padding:0;}
+</style>
+
+

@@ -1,0 +1,13 @@
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<div class="container">
+{{> components/blog/post post=blog.post show_tags=true}}
+</div>
+{{/partial}}
+{{> layout/base}}
+<style>
+.body {margin-top: 0;}
+.body > .container{	max-width:100%; padding:0;} 
+body > iframe{display:none;}
+</style>
