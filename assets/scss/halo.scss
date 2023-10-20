@@ -1,0 +1,31 @@
+.banner-top {
+    .banner-top__item {
+        
+        &-left {
+            padding-left: 90px;
+            padding-right: 60px;
+            width: 100%;
+            
+            @media (min-width: 768px) {
+                max-width: 940px;
+            }
+
+            .content {
+                max-width: 650px;
+            }
+        }   
+
+        &-right {
+            width: 100%;
+            .prilist_form {
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+
+                @media (min-width: 768px) {
+                    max-width: 616px;
+                }
+            }
+        }
+    }
+}
