@@ -36,3 +36,17 @@ $(document).on('click', event => {
 }
 mobileMenu()
 }
+
+function faqTab() {
+	let faqList = document.querySelectorAll(".custom-faqs__item");
+
+	if(!faqList) return;
+
+	for (let item of faqList) {
+		item.addEventListener("click", (e) => {
+			item.classList.toggle('is-open');
+		})	
+	}
+}
+
+faqTab();

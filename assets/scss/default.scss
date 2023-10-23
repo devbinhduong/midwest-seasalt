@@ -18,12 +18,16 @@
     background-color: #ffffff !important;
 }
 
+.bg-violet {
+    background-color: #A594F8 !important;
+}
+
 .custom-section {
     padding: 60px 60px 80px;
     background-color: #ffffff;
 
-    &.mt-20 {
-        margin-top: -20px;
+    &.mt-30 {
+        margin-top: -30px;
     }
 
     &.rounded-top {
@@ -213,6 +217,24 @@
     }
 }
 
+.custom-section-two-block {
+    @media (min-width: 768px) and (max-width: 1200px) {
+        .block-content {
+            width: 50%;
+            flex: 0 0 50%;
+        }
+
+        .block-image {
+            width: 50%;
+            flex: 0 0 50%;
+        }
+    }
+}
+
+.text-center {
+    text-align: center !important;
+}
+
 .text-15 {
     font-size: 15px !important;
 }
@@ -286,18 +308,34 @@
 
 .pt-60 {
     padding-top: 60px !important;
+
+    @media (min-width: 1025px) and (max-width: 1600px) {
+        padding-top: 30px !important;    
+    }
 }
 
 .pb-60 {
     padding-bottom: 60px !important;
+
+    @media (min-width: 1025px) and (max-width: 1600px) {
+        padding-bottom: 30px !important;    
+    }
 }
 
 .pl-60 {
     padding-left: 60px !important;
+
+    @media (min-width: 1025px) and (max-width: 1600px) {
+        padding-left: 30px !important;    
+    }
 }
 
 .pr-60 {
     padding-right: 60px !important;
+
+    @media (min-width: 1025px) and (max-width: 1600px) {
+        padding-right: 30px !important;    
+    }
 }
 
 .pr-40 {
@@ -366,8 +404,19 @@
 }
 
 .max-580 {
-    max-width: 580px;
+    max-width: 580px !important;
 }
+
+.max-640 {
+    max-width: 640px !important;
+}
+
+@media (min-width: 1201px) {
+    .flex-1 {
+        flex: 1;
+    }
+}
+
 
 .block {
     display: block;
@@ -383,6 +432,10 @@
 
 .flex {
     display: flex;
+}
+
+.flex-row-reverse {
+    flex-direction: row-reverse;
 }
 
 .flex-center-x {
@@ -423,6 +476,10 @@
 
     .pb-20-tl {
         padding-bottom: 20px !important;
+    }
+
+    .flex-unset-tl {
+        flex: unset;
     }
 }
 
@@ -487,6 +544,10 @@
     .pb-0-mb {
         padding-bottom: 0 !important;
     }
+
+    .flex-unset-mb {
+        flex: unset;
+    }
 }
 
 .container-1920 {
@@ -503,5 +564,6 @@
 
 .body:has(.container-1920) {
     margin-top: 0;
+    margin-bottom: 0;
 }
 
