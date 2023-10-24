@@ -51,6 +51,10 @@
         --grid-gap: 0;
     }
 
+    &.gap-30 {
+        --grid-gap: 30;
+    }
+
     &.gap-120 {
         --grid-gap: 120px;
     }
@@ -442,6 +446,12 @@
     justify-content: center;
 }
 
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .flex-center-y {
     align-items: center;
 }
@@ -557,11 +567,31 @@
     margin-right: auto;
 }
 
+.container-1810 {
+    width: 100%;
+    max-width: 1810px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-1200 {
+    width: 100%;
+    max-width: 1230px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container:has(.container-1810),
 .container:has(.container-1920) {
     max-width: 1920px;
     padding: 0;
 }
 
+.body:has(.container-1810),
 .body:has(.container-1920) {
     margin-top: 0;
     margin-bottom: 0;
