@@ -977,6 +977,12 @@
 .custom-contact-us-content {
     .page-content {
         width: 100%;
+        padding-bottom: 65px;
+        float: none;
+
+        @media (max-width: 767px) {
+            padding-bottom: 25px;
+        }
     }
     .contact-form-title {
         font-size: 24px;
@@ -1117,6 +1123,63 @@
                         }
                     }
                 }
+            }
+        }
+    }
+
+    .contact-map {
+        padding-top: 50px;
+
+        .contact-map__header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding-left: 15px;
+            padding-right: 15px;
+
+            .contact-map__title {
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 26px;
+                font-family: Mulish;
+                text-transform: capitalize;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .contact-map__text {
+                max-width: 400px;
+                text-align: center;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 140%;
+                font-family: Mulish;
+                margin-top: 26px;
+                margin-bottom: 40px;
+            }
+
+            .contact-map__button {
+                background-color: transparent;
+                border: 1px solid #000000;
+                font-weight: 700;
+                width: 100%;
+                max-width: 205px;
+                margin-bottom: 57px;
+
+                &:hover {
+                    background-color: #000000;
+                    color: #ffffff;
+                }
+            }
+        }
+
+        .contact-map__content {
+            iframe {
+                width: 100% !important;
             }
         }
     }
