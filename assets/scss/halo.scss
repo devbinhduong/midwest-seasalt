@@ -1184,3 +1184,36 @@
         }
     }
 }
+
+/* Information Page */
+.cms_page {
+    .cms_left {
+        &.is-sticky {
+            position: fixed;
+            top: 20%;
+
+            @media (max-width: 990px) {
+                top: 0;
+                background-color: #ffffff;
+            }
+        }
+        
+    }
+
+    .custom-list-title {
+        display: flex;
+        flex-direction: column;
+
+        > a {
+            display: inline-block;
+            padding: 6px 12px;
+            padding-left: 17px;
+            border-left: 2px solid #cccccc;
+            
+
+            &.is-active {
+                border-left: 3px solid #000000;
+            }
+        }
+    }
+}

@@ -25,6 +25,7 @@ export default function(context) {
 		   })
 
 			videoBannerPopup();
+			getTitleSidebar();
 
 		})
 	}
@@ -133,6 +134,58 @@ export default function(context) {
 				overlay.style.display = "flex";
 			})
 		}
+	}
+
+
+	function getTitleSidebar() {
+		var h3Elements = document.querySelectorAll('.midwest_seasalt_cms h3');
+
+		h3Elements.forEach(function(h3, index) {
+			var anchor = document.createElement('a');
+			anchor.textContent = h3.textContent;
+			anchor.href = '#' + index;
+
+			anchor.addEventListener('click', function(e) {
+				e.preventDefault();
+
+				document.querySelectorAll('.custom-list-title a').forEach(function(a) {
+					a.classList.remove('is-active');
+				});
+
+				anchor.classList.add('is-active');
+
+				var targetH3 = document.querySelectorAll('.midwest_seasalt_cms h3')[index];
+				targetH3.scrollIntoView(false,{ behavior: 'smooth' });
+			});
+
+			document.querySelector('.custom-list-title').appendChild(anchor);
+		});
+
+		window.addEventListener('scroll', function() {
+			h3Elements.forEach(function(h3, index) {
+				var rect = h3.getBoundingClientRect();
+				if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+					document.querySelectorAll('.custom-list-title a').forEach(function(a) {
+						a.classList.remove('is-active');
+					});
+
+					var correspondingAnchor = document.querySelectorAll('.custom-list-title a')[index];
+					correspondingAnchor.classList.add('is-active');
+				}
+			});
+
+			/* Add class is-sticky when scroll lagger header Height */
+			let header = document.querySelector('header').clientHeight;
+			let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+			let headerHeightSticky = header + 100;
+			if (scrollTop > headerHeightSticky){
+				document.querySelector('.cms_left').classList.add('is-sticky');
+			}
+			else {
+				document.querySelector('.cms_left').classList.remove('is-sticky');
+			}
+			
+		});
 	}
 }
 
