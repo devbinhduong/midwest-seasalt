@@ -2,24 +2,34 @@
 
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}} 
 
-<main class="cms_page cms_left_menus page">
+<main class="cms_page cms_left_menus custom-infomatio-page page">
 	<div class="main_cate">
-		<div class="container">
-			<div class="cms_left">  
-				<ul class="cms_cat_list custom-list-title">
-                    
-				</ul>					
-				<div class="cms_button">
-					<a class="button" href="/contact-us/">contact us</a>
+		<div class="container-1440">
+			<h1 class="text-center custom-heading text-blue pb-60">{{page.title}}</h1>
+			<div class="information__block">
+				<div class="cms_left">
+					<ul class="cms_cat_list custom-list-title">
+					</ul>
+					<div class="cms_button">
+						<a class="button" href="/contact-us/">contact us</a>
+					</div>
+
+					<span class="icon icon--close info-close-sidebar">
+						<svg><use xlink:href="#icon-close"></use></svg>
+					</span>
+
+					<span class="icon icon--faq-arrow-down info-open-sidebar">
+						<svg><use xlink:href="#icon-faq-arrow-down"></use></svg>
+					</span>
 				</div>
-			</div>
-			<div class="cms_right">
-				<div class="page-content page-content--centered">
-					{{#replace '%%Syndicate%%' page.content}}
-						{{> components/page/rss_feed}}
-					{{else}}
-						{{{page.content}}}
-					{{/replace}}
+				<div class="cms_right">
+					<div class="page-content page-content--centered">
+						{{#replace '%%Syndicate%%' page.content}}
+							{{> components/page/rss_feed}}
+						{{else}}
+							{{{page.content}}}
+						{{/replace}}
+					</div>
 				</div>
 			</div>
 			{{#if page.feed}}

@@ -26,6 +26,7 @@ export default function(context) {
 
 			videoBannerPopup();
 			getTitleSidebar();
+			informationSidebar();
 
 		})
 	}
@@ -143,7 +144,9 @@ export default function(context) {
 		h3Elements.forEach(function(h3, index) {
 			var anchor = document.createElement('a');
 			anchor.textContent = h3.textContent;
-			anchor.href = '#' + index;
+			anchor.href = '#sidebar-item' + index;
+
+			h3.id = "sidebar-item" + index;
 
 			anchor.addEventListener('click', function(e) {
 				e.preventDefault();
@@ -154,8 +157,12 @@ export default function(context) {
 
 				anchor.classList.add('is-active');
 
-				var targetH3 = document.querySelectorAll('.midwest_seasalt_cms h3')[index];
-				targetH3.scrollIntoView(false,{ behavior: 'smooth' });
+				let anchorHref = anchor.getAttribute("href");
+
+				$('html, body').animate({
+					scrollTop: ($(anchorHref).offset().top - 200)
+				}, 1000);
+
 			});
 
 			document.querySelector('.custom-list-title').appendChild(anchor);
@@ -177,7 +184,7 @@ export default function(context) {
 			/* Add class is-sticky when scroll lagger header Height */
 			let header = document.querySelector('header').clientHeight;
 			let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-			let headerHeightSticky = header + 100;
+			let headerHeightSticky = header;
 			if (scrollTop > headerHeightSticky){
 				document.querySelector('.cms_left').classList.add('is-sticky');
 			}
@@ -186,6 +193,30 @@ export default function(context) {
 			}
 			
 		});
+	}
+
+	function informationSidebar () {
+		let openButton = document.querySelector(".info-open-sidebar"),
+			closeButton = document.querySelector(".info-close-sidebar"),
+			sidebar = document.querySelector(".custom-infomatio-page .cms_left"),
+			sidebarItem = document.querySelectorAll(".custom-list-title > a");
+
+		if(!openButton || !closeButton || !sidebar) return;
+
+		openButton.addEventListener("click", () => {
+			sidebar.classList.add("is-open");
+		});
+
+		closeButton.addEventListener("click", () => {
+			sidebar.classList.remove("is-open");
+		});
+
+		for(let item of sidebarItem) {
+			item.addEventListener("click", (e) => {
+				e.preventDefault();
+				sidebar.classList.remove('is-open');
+			})
+		}
 	}
 }
 
