@@ -1386,3 +1386,14 @@
         }
     }
 }
+
+.information__block:has(.rewards) {
+    .cms_left {
+        display: none;
+    }
+
+    .cms_right {
+        width: 100%;
+        max-width: 100%;
+    }
+}
