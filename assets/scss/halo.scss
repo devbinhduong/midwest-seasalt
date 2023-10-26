@@ -1328,13 +1328,13 @@
     /* Content */
     .midwest_seasalt_cms {
         h3 {
-            font-size: 30px;
             font-style: normal;
             font-weight: 400;
             line-height: 1.3333;
             font-family: Mulish;
             margin-top: 0;
             margin-bottom: 16px;
+            font-size: clamp(24px, 2vw, 30px);
         }
 
         h4 {
@@ -1350,7 +1350,7 @@
         }
 
         p {
-            font-size: 16px;
+            font-size: clamp(14px, 1.5vw, 16px);
             line-height: 1.5;
             margin-bottom: 16px;
             font-family: Mulish;
