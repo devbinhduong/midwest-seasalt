@@ -11,7 +11,9 @@
             }
 
             .content {
-                max-width: 650px;
+                @media (min-width: 768px) {
+                    max-width: 650px;
+                }
             }
         }   
 
@@ -1351,6 +1353,7 @@
 
         p {
             font-size: clamp(14px, 1.5vw, 16px);
+
             line-height: 1.5;
             margin-bottom: 16px;
             font-family: Mulish;
@@ -1369,6 +1372,17 @@
             margin-bottom: 0;
             padding-right: 12px;
             padding-bottom: 12px;
+        }
+    }
+}
+
+/* Custom Navigation Menu */
+.navPagse-item--custom {
+    &.is_open {
+        .navPages-action{
+            &::before {
+                content: unset !important;
+            }
         }
     }
 }

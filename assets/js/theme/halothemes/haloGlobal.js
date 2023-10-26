@@ -185,11 +185,16 @@ export default function(context) {
 			let header = document.querySelector('header').clientHeight;
 			let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 			let headerHeightSticky = header;
+
+			let leftSidebar = document.querySelector('.cms_left');
+
+			if (!leftSidebar) return;
+			
 			if (scrollTop > headerHeightSticky){
-				document.querySelector('.cms_left').classList.add('is-sticky');
+				leftSidebar.classList.add('is-sticky');
 			}
 			else {
-				document.querySelector('.cms_left').classList.remove('is-sticky');
+				leftSidebar.classList.remove('is-sticky');
 			}
 			
 		});
