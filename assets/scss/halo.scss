@@ -181,6 +181,7 @@
 /* -------------------------------- About Us Page ----------------------------------- */
 .lookbook-slider {
     .slider__list {
+
         .slider__item {
             position: relative;
             .slider-image {
@@ -291,6 +292,11 @@
             }
         }
 
+        &:not(.slick-initialized) {
+            .slider__item:not(:first-child) {
+                display: none;
+            }
+        }
 
         .slick-dots {
             --spacing-sides: 70px;
@@ -643,6 +649,12 @@
                     &:last-child{
                         margin-right: 0;
                     }
+                }
+            }
+
+            @media (max-width: 1600px) {
+                .slick-arrow {
+                    display: none !important;
                 }
             }
         }
@@ -1200,7 +1212,7 @@
             overflow: auto;
     
             &::-webkit-scrollbar {
-                width: 5px;
+                width: 3px;
             }
             
             /* Track */
@@ -1210,7 +1222,7 @@
             
             /* Handle */
             &::-webkit-scrollbar-thumb {
-                background: #000000;
+                background: #A594F9;
     
             }
             
@@ -1250,6 +1262,13 @@
                 top: 18%;
                 // z-index: -1;
             }
+
+            &.sticky-end-page {
+                @media (min-width: 768px) {
+                    top: unset;
+                    bottom: 40%;
+                }
+            }
         }
         
         .info-close-sidebar {
@@ -1267,7 +1286,7 @@
 
         .info-open-sidebar {
             position: absolute;
-            top: 0;
+            top: 10%;
             right: -36px;
             cursor: pointer;
             width: 36px;
