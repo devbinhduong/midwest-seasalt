@@ -89,3 +89,9 @@
 
 @import "default";
 @import "halo";
+
+.navUser-section {
+    .navUser-action--currencySelector {
+        display: none;
+    }
+}

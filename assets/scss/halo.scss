@@ -5,6 +5,11 @@
             padding-left: 90px;
             padding-right: 60px;
             width: 100%;
+
+            @media (min-width: 768px) and (max-width: 1500px) {
+                padding-left: 0;
+                padding-right: 20px;
+            }
             
             @media (min-width: 768px) {
                 max-width: 940px;
@@ -480,7 +485,8 @@
                 padding-top: 56%;
                 width: 100%;
 
-                iframe {
+                iframe,
+                video {
                     position: absolute;
                     top: 0;
                     right: 0;
@@ -495,6 +501,7 @@
         &:hover {
             .slick-arrow {
                 opacity: 1 !important;
+                background-size: 0 !important;
             }
         }
 
@@ -604,6 +611,7 @@
 
                 &:hover{
                     opacity: 1;
+                    background-size: 0 !important;
 
                     &:before {
                         background-size: 8px;
@@ -1237,8 +1245,10 @@
             max-width: 100%;
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             left: -100%;
+            top: 0;
             bottom: 0;
             position: fixed;
+            z-index: 9999;
             background-color: #ffffff;
             transition: all 0.3s linear;
            
@@ -1286,21 +1296,13 @@
 
         .info-open-sidebar {
             position: absolute;
-            top: 10%;
+            top: 24%;
             right: -36px;
             cursor: pointer;
             width: 36px;
             height: 36px;
             display: inline-block;
             border: 1px solid #A594F9;
-
-            @media (max-width: 520px) {
-                top: 10%;
-            }
-
-            @media (max-width: 400px) {
-                top: 20%;
-            }
 
             svg {
                 transform: rotate(-90deg);
@@ -1384,6 +1386,10 @@
 
         table {
             margin-bottom: 16px;
+
+            @media (max-width: 767px) {
+                width: 100%;
+            }
         }
 
         p:has(img) {
@@ -1391,6 +1397,10 @@
             margin-bottom: 0;
             padding-right: 12px;
             padding-bottom: 12px;
+
+            @media (max-width: 1200px) {
+               float: unset;
+            }
         }
     }
 }
@@ -1414,5 +1424,16 @@
     .cms_right {
         width: 100%;
         max-width: 100%;
+    }
+}
+
+
+@media (min-width: 1200px) and (max-width: 1600px) {
+    .initial-cost-outlay__heading {
+        flex: 33.3333%;
+    }
+
+    .initial-cost-outlay__content {
+        flex: 66.6666%;
     }
 }

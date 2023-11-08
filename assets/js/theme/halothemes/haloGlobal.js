@@ -128,10 +128,23 @@ export default function(context) {
 				e.preventDefault();
 				e.stopImmediatePropagation();
 
-				let video = playButton.closest('.banner-video-popup').getAttribute('data-video-link'),
-					videoId = video.match(/[?&]v=([^&]+)/)[1]
+				let video = playButton.closest('.banner-video-popup').getAttribute('data-video-link');
 
-				videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
+				let videoId = "";
+
+				if(!video) {
+					playButton.remove();
+					return;
+				}
+
+				if(video.toLocaleLowerCase().includes('youtube')) {
+					videoId = video.match(/[?&]v=([^&]+)/)[1];
+					videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
+				} else {
+					// videoId = `${window.location.origin}${video}`;
+					videoFrame.src = video;
+				}				
+
 				overlay.style.display = "flex";
 			})
 		}
